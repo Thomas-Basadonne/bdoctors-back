@@ -15,12 +15,11 @@ return new class extends Migration
     {
         Schema::create('profiles', function (Blueprint $table) {
             $table->id();
-            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->text('description')->nullable();
             $table->text('services')->nullable();
             $table->string('address')->nullable();
-            $table->varchar('photo', 255)->nullable();
-            $table->tinyInteger('visible', 1)->default(1);
+            $table->text('photo')->nullable();
+            $table->tinyInteger('visible');
             $table->timestamps();
         });
     }
