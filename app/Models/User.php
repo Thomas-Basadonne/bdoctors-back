@@ -49,6 +49,6 @@ class User extends Authenticatable
     }
     public function reviews()
     {
-        return $this->hasOne(reviews::class);
+        return $this->hasMany(reviews::class);
     }
 }
