@@ -51,4 +51,8 @@ class User extends Authenticatable
     {
         return $this->hasMany(reviews::class);
     }
+    public function messages()
+    {
+        return $this->hasMany(messages::class);
+    }
 }
