@@ -51,4 +51,12 @@ class User extends Authenticatable
     {
         return $this->hasMany(reviews::class);
     }
+    public function messages()
+    {
+        return $this->hasMany(messages::class);
+    }
+    public function sponsorships()
+    {
+        return $this->belongsToMany(sponsorships::class)->withPivot('user_id', 'sponsorships_id');
+    }
 }
