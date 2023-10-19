@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\messages;
-use App\Http\Requests\StoremessagesRequest;
-use App\Http\Requests\UpdatemessagesRequest;
+use App\Models\Profile;
+use App\Http\Requests\StoreProfileRequest;
+use App\Http\Requests\UpdateProfileRequest;
 
-class MessagesController extends Controller
+class DocProfileController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -31,10 +31,10 @@ class MessagesController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \App\Http\Requests\StoremessagesRequest  $request
+     * @param  \App\Http\Requests\StoreProfileRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StoremessagesRequest $request)
+    public function store(StoreProfileRequest $request)
     {
         //
     }
@@ -42,10 +42,10 @@ class MessagesController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\messages  $messages
+     * @param  \App\Models\Profile  $profile
      * @return \Illuminate\Http\Response
      */
-    public function show(messages $messages)
+    public function show(Profile $profile)
     {
         //
     }
@@ -53,10 +53,10 @@ class MessagesController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\messages  $messages
+     * @param  \App\Models\Profile  $profile
      * @return \Illuminate\Http\Response
      */
-    public function edit(messages $messages)
+    public function edit(Profile $profile)
     {
         //
     }
@@ -64,11 +64,11 @@ class MessagesController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \App\Http\Requests\UpdatemessagesRequest  $request
-     * @param  \App\Models\messages  $messages
+     * @param  \App\Http\Requests\UpdateProfileRequest  $request
+     * @param  \App\Models\Profile  $profile
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdatemessagesRequest $request, messages $messages)
+    public function update(UpdateProfileRequest $request, Profile $profile)
     {
         //
     }
@@ -76,10 +76,10 @@ class MessagesController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\messages  $messages
+     * @param  \App\Models\Profile  $profile
      * @return \Illuminate\Http\Response
      */
-    public function destroy(messages $messages)
+    public function destroy(Profile $profile)
     {
         //
     }

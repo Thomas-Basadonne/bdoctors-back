@@ -4,9 +4,10 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
 use Faker\Factory as Faker;
 
-class MessagesSeeder extends Seeder
+class UserSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -16,16 +17,13 @@ class MessagesSeeder extends Seeder
     public function run()
     {
         $faker = Faker::create();
-        $usersIDs = DB::table('users')->pluck('id');
 
-
-        foreach (range(1, 50) as $index) {
-            DB::table('messages')->insert([
-                'user_id' => $faker->randomElement($usersIDs),
-                'name' => $faker->firstName,
-                'lastname' => $faker->lastName,
+        foreach (range(1, 10) as $index) {
+            DB::table('users')->insert([
+                'name' => $faker->name,
                 'email' => $faker->unique()->safeEmail,
-                'text' => $faker->paragraph,
+                'email_verified_at' => now(),
+                'password' => Hash::make('password'), // Puoi impostare una password predefinita
                 'created_at' => now(),
                 'updated_at' => now(),
             ]);

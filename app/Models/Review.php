@@ -5,13 +5,14 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class sponsorships extends Model
+class Review extends Model
 {
     use HasFactory;
-    protected $fillable = ['user_id', 'sponsorship_id',];
+    protected $fillable = ['user_id', 'name', 'lastname', 'email', 'text'];
+
+
     public function user()
     {
-
-        return $this->belongsToMany(User::class);
+        return $this->belongsTo(User::class);
     }
 }

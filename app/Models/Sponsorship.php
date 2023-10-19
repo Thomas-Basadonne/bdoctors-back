@@ -5,13 +5,13 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class profiles extends Model
+class Sponsorship extends Model
 {
     use HasFactory;
-    protected $fillable = ['user_id', 'description', 'services', 'address', 'photo', 'visible',];
-
+    protected $fillable = ['user_id', 'sponsorship_id',];
     public function user()
     {
-        return $this->belongsTo(User::class);
+
+        return $this->belongsToMany(User::class);
     }
 }

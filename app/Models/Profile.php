@@ -5,11 +5,10 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class reviews extends Model
+class Profile extends Model
 {
     use HasFactory;
-    protected $fillable = ['user_id', 'name', 'lastname', 'email', 'text'];
-
+    protected $fillable = ['user_id', 'description', 'services', 'address', 'photo', 'visible',];
 
     public function user()
     {

@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\profiles;
-use App\Http\Requests\StoreprofilesRequest;
-use App\Http\Requests\UpdateprofilesRequest;
+use App\Models\Review;
+use App\Http\Requests\StoreReviewRequest;
+use App\Http\Requests\UpdateReviewRequest;
 
-class ProfilesController extends Controller
+class ReviewController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -31,10 +31,10 @@ class ProfilesController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \App\Http\Requests\StoreprofilesRequest  $request
+     * @param  \App\Http\Requests\StoreReviewRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StoreprofilesRequest $request)
+    public function store(StoreReviewRequest $request)
     {
         //
     }
@@ -42,10 +42,10 @@ class ProfilesController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\profiles  $profiles
+     * @param  \App\Models\Review  $reviews
      * @return \Illuminate\Http\Response
      */
-    public function show(profiles $profiles)
+    public function show(Review $reviews)
     {
         //
     }
@@ -53,10 +53,10 @@ class ProfilesController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\profiles  $profiles
+     * @param  \App\Models\Review  $reviews
      * @return \Illuminate\Http\Response
      */
-    public function edit(profiles $profiles)
+    public function edit(Review $reviews)
     {
         //
     }
@@ -64,11 +64,11 @@ class ProfilesController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \App\Http\Requests\UpdateprofilesRequest  $request
-     * @param  \App\Models\profiles  $profiles
+     * @param  \App\Http\Requests\UpdateReviewRequest  $request
+     * @param  \App\Models\Review  $reviews
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateprofilesRequest $request, profiles $profiles)
+    public function update(UpdateReviewRequest $request, Review $reviews)
     {
         //
     }
@@ -76,10 +76,10 @@ class ProfilesController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\profiles  $profiles
+     * @param  \App\Models\Review  $reviews
      * @return \Illuminate\Http\Response
      */
-    public function destroy(profiles $profiles)
+    public function destroy(Review $reviews)
     {
         //
     }
