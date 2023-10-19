@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
+use Faker\Factory as Faker;
 use Illuminate\Support\Facades\DB;
 
 class SponsorshipsSeeder extends Seeder
@@ -32,11 +33,26 @@ class SponsorshipsSeeder extends Seeder
             ],
         ];
 
+
         foreach ($sponsorships as $sponsorship) {
             DB::table('sponsorships')->insert([
                 'name' => $sponsorship['name'],
                 'price' => $sponsorship['price'],
                 'duration' => $sponsorship['duration'],
+                'created_at' => now(),
+                'updated_at' => now(),
+            ]);
+        }
+
+        $faker = Faker::create();
+
+        $usersIDs = DB::table('users')->pluck('id');
+        $sponsorIDs = DB::table('sponsorships')->pluck('id');
+
+        foreach (range(1, 50) as $index) {
+            DB::table('user_sponsorship')->insert([
+                'user_id' => $faker->randomElement($usersIDs),
+                'sponsorship_id' => rand(1, 3),
                 'created_at' => now(),
                 'updated_at' => now(),
             ]);

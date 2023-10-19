@@ -16,9 +16,13 @@ class ReviewsSeeder extends Seeder
     public function run()
     {
         $faker = Faker::create();
+        $usersIDs = DB::table('users')->pluck('id');
+
+
 
         foreach (range(1, 50) as $index) {
             DB::table('reviews')->insert([
+                'user_id' => $faker->randomElement($usersIDs),
                 'name' => $faker->firstName,
                 'lastname' => $faker->lastName,
                 'email' => $faker->unique()->safeEmail,

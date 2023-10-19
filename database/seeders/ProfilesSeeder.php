@@ -16,9 +16,11 @@ class ProfilesSeeder extends Seeder
     public function run()
     {
         $faker = Faker::create();
+        $usersIDs = DB::table('users')->pluck('id');
 
         foreach (range(1, 50) as $index) {
             DB::table('profiles')->insert([
+                'user_id' => $faker->randomElement($usersIDs),
                 'description' => $faker->paragraph,
                 'services' => $faker->text,
                 'address' => $faker->address,

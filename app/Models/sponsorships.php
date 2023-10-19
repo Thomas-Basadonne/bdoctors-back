@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class sponsorships extends Model
 {
     use HasFactory;
-    protected $fillable = ['user_id', 'sponsorships_id',];
+    protected $fillable = ['user_id', 'sponsorship_id',];
     public function user()
     {
 
