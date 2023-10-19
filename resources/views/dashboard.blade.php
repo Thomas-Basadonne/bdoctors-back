@@ -16,8 +16,11 @@
                         {{ session('status') }}
                     </div>
                     @endif
-
+                    
                     {{ __('You are logged in!') }}
+                </div>
+                <div class="card-body">
+                    <a class="dropdown-item" href="{{ url('admin/profile/create') }}">{{__('Registratra la tua professione!')}}</a>
                 </div>
             </div>
         </div>

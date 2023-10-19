@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\profiles;
 use App\Http\Requests\StoreprofilesRequest;
 use App\Http\Requests\UpdateprofilesRequest;
+use Illuminate\Support\Facades\Auth;
 
 class ProfilesController extends Controller
 {
@@ -15,7 +16,8 @@ class ProfilesController extends Controller
      */
     public function index()
     {
-        //
+        $user = Auth::id();
+        return view('admin.indexProfile', compact('user'));
     }
 
     /**
@@ -25,7 +27,8 @@ class ProfilesController extends Controller
      */
     public function create()
     {
-        //
+        $profiles = profiles::all();
+        return view('admin\createProfile', compact('profiles'));
     }
 
     /**
