@@ -3,10 +3,10 @@
 namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
-use Illuminate\Support\Facades\DB;
 use Faker\Factory as Faker;
+use Illuminate\Support\Facades\DB;
 
-class ReviewsSeeder extends Seeder
+class ProfileSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -18,15 +18,14 @@ class ReviewsSeeder extends Seeder
         $faker = Faker::create();
         $usersIDs = DB::table('users')->pluck('id');
 
-
-
         foreach (range(1, 50) as $index) {
-            DB::table('reviews')->insert([
+            DB::table('profiles')->insert([
                 'user_id' => $faker->randomElement($usersIDs),
-                'name' => $faker->firstName,
-                'lastname' => $faker->lastName,
-                'email' => $faker->unique()->safeEmail,
-                'text' => $faker->paragraph,
+                'description' => $faker->paragraph,
+                'services' => $faker->text,
+                'address' => $faker->address,
+                'photo' => $faker->imageUrl(200, 200),
+                'visible' => $faker->numberBetween(0, 1),
                 'created_at' => now(),
                 'updated_at' => now(),
             ]);

@@ -5,7 +5,7 @@ namespace Database\Seeders;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 
-class StarsSeeder extends Seeder
+class StarSeeder extends Seeder
 {
     /**
      * Run the database seeds.

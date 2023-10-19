@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\reviews;
-use App\Http\Requests\StorereviewsRequest;
-use App\Http\Requests\UpdatereviewsRequest;
+use App\Models\Message;
+use App\Http\Requests\StoreMessageRequest;
+use App\Http\Requests\UpdateMessageRequest;
 
-class ReviewsController extends Controller
+class MessageController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -31,10 +31,10 @@ class ReviewsController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \App\Http\Requests\StorereviewsRequest  $request
+     * @param  \App\Http\Requests\StoreMessageRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StorereviewsRequest $request)
+    public function store(StoreMessageRequest $request)
     {
         //
     }
@@ -42,10 +42,10 @@ class ReviewsController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\reviews  $reviews
+     * @param  \App\Models\Message  $messages
      * @return \Illuminate\Http\Response
      */
-    public function show(reviews $reviews)
+    public function show(Message $messages)
     {
         //
     }
@@ -53,10 +53,10 @@ class ReviewsController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\reviews  $reviews
+     * @param  \App\Models\Message  $messages
      * @return \Illuminate\Http\Response
      */
-    public function edit(reviews $reviews)
+    public function edit(Message $messages)
     {
         //
     }
@@ -64,11 +64,11 @@ class ReviewsController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \App\Http\Requests\UpdatereviewsRequest  $request
-     * @param  \App\Models\reviews  $reviews
+     * @param  \App\Http\Requests\UpdateMessageRequest  $request
+     * @param  \App\Models\Message  $messages
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdatereviewsRequest $request, reviews $reviews)
+    public function update(UpdateMessageRequest $request, Message $messages)
     {
         //
     }
@@ -76,10 +76,10 @@ class ReviewsController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\reviews  $reviews
+     * @param  \App\Models\Message  $messages
      * @return \Illuminate\Http\Response
      */
-    public function destroy(reviews $reviews)
+    public function destroy(Message $messages)
     {
         //
     }

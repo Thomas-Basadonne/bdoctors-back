@@ -5,7 +5,7 @@ namespace Database\Seeders;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 
-class TypologiesSeeder extends Seeder
+class TypologySeeder extends Seeder
 {
     /**
      * Run the database seeds.

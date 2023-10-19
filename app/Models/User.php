@@ -49,14 +49,14 @@ class User extends Authenticatable
     }
     public function reviews()
     {
-        return $this->hasMany(reviews::class);
+        return $this->hasMany(Review::class);
     }
     public function messages()
     {
-        return $this->hasMany(messages::class);
+        return $this->hasMany(Message::class);
     }
     public function sponsorships()
     {
-        return $this->belongsToMany(sponsorships::class)->withPivot('user_id', 'sponsorships_id');
+        return $this->belongsToMany(Sponsorship::class)->withPivot('user_id', 'sponsorships_id');
     }
 }
