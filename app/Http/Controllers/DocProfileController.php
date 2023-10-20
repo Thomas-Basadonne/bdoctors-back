@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Str;
 
-class ProfileController extends Controller
+class DocProfileController extends Controller
 {
     /**
      * Display a listing of the resource.

@@ -18,6 +18,10 @@
                     @endif
 
                     {{ __('You are logged in!') }}
+                    <br>
+
+        <a class="dropdown-item" href="{{ url('admin/profile/create') }}">{{__('crea il tuo profilo da dottore')}}</a>
+
                 </div>
             </div>
         </div>
