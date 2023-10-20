@@ -6,6 +6,8 @@ use App\Models\profiles;
 use App\Http\Requests\StoreprofilesRequest;
 use App\Http\Requests\UpdateprofilesRequest;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Str;
 
 class ProfilesController extends Controller
 {
@@ -39,7 +41,15 @@ class ProfilesController extends Controller
      */
     public function store(StoreprofilesRequest $request)
     {
-        //
+        // $formData = $request->all();
+        // $this->validation($formData);
+        $newProfile = new profiles();
+        $newProfile->fill($request->all());
+        $newProfile->user_id = Auth::id();
+        // $newProfile->slug = Str::slug($newProfile->address, '-');
+        $newProfile->save();
+
+        return redirect()->route('admin.profile.show', $newProfile->id);
     }
 
     /**
@@ -50,7 +60,11 @@ class ProfilesController extends Controller
      */
     public function show(profiles $profiles)
     {
-        //
+        if ($profiles->user_id == Auth::id()) {
+            return view('admin.showProfile', compact('profiles'));
+        } else {
+            return redirect()->route('admin.profile.index');
+        }
     }
 
     /**
@@ -61,7 +75,6 @@ class ProfilesController extends Controller
      */
     public function edit(profiles $profiles)
     {
-        //
     }
 
     /**
@@ -86,4 +99,31 @@ class ProfilesController extends Controller
     {
         //
     }
+
+    // private function validation($formData)
+    // {
+
+    //     $validator = Validator::make($formData, [
+
+
+    //         'user_id' => 'required|max:200',
+    //         'description' => 'required|max:200',
+    //         'services' => 'required|max:200',
+    //         'address' => 'required',
+    //         'visible' => 'required',
+    //         'photo'   => 'nullable|image|max:4096',
+
+    //     ], [
+    //         // 'title.required' => 'Il titolo deve essere inserito',
+    //         // 'title.required' => 'Il titolo deve essere inserito',
+    //         // 'title.max' => 'Il titolo deve avere :max caratteri',
+    //         // 'description.required' => 'La descrizione deve essere inserita',
+    //         // 'thumb.required' => 'Questo campo non può rimanere vuoto',
+    //         // 'cover_image.max' => "La dimensione del file è troppo grande",
+    //         // 'cover_image.image' => "Il file deve essere di tipo immagine",
+
+    //     ])->validate();
+
+    //     return $validator;
+    // }
 }

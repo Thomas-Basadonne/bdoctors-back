@@ -13,7 +13,9 @@ class StoreprofilesRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        //modificato perche dopo il riempimento del form negava l'accesso alla show
+        // return false;
+        return true;
     }
 
     /**

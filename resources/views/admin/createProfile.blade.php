@@ -2,32 +2,21 @@
 
 @section('content')
     <h1 class="m-4 text-center">Il tuo profilo</h1>
+    {{-- onsubmit="return validateForm('admin.profile.store')" --}}
 
-    <form onsubmit="return validateForm()" class="background container form-control border-5 border-warning rounded-5 py-4"  method="POST" enctype="multipart/form-data">
+    <form action="{{route('admin.profile.store')}}" class="background container form-control border-5 border-warning rounded-5 py-4"  method="POST" enctype="multipart/form-data">
         @csrf
 
         <div class="mb-4">
-            <label class="mt-2 mb-2 label-bg " for="activity_name">*Nome dell'attività</label>
-            <input type="text" name="activity_name" id="activity_name"
-                class="form-control text-dark @error('activity_name') is-invalid @enderror" value="{{ old('activity_name') }}" required>
-            @error('activity_name')
+            <label class="mt-2 mb-2 label-bg " for="services">*Servizio</label>
+            <input type="text" name="services" id="services"
+                class="form-control text-dark @error('services') is-invalid @enderror" value="{{ old('services') }}" required>
+            @error('services')
                 <div class="invalid-feedback">
                     {{ $message }}
                 </div>
             @enderror
         </div>
-
-        {{-- <div class="mb-4">
-            <label class="mt-2 mb-2 label-bg " for="phone_number">*Numero di telefono</label>
-            <input type="tel" name="phone_number" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" id="phone_number"
-                class="form-control @error('phone_number') is-invalid @enderror" value="{{ old('phone_number') }}" required>
-            <small class="fw-bold  label-bg p-0 px-1 mt-1">Formato: 123-456-7890</small>
-            @error('phone_number')
-                <div class="invalid-feedback">
-                    {{ $message }}
-                </div>
-            @enderror
-        </div> --}}
 
         <div class="mb-4">
             <label class="mt-2 mb-2 label-bg " for="address">*Indirizzo</label>
@@ -41,34 +30,27 @@
         </div>
 
         <div class="mb-4">
-            <label class="mt-2 mb-2 label-bg " for="vat">*Partita IVA</label>
-            <input minlength="11" maxlength="15" type="text" name="vat" id="vat" class="form-control @error('vat') is-invalid @enderror"
-                value="{{ old('vat') }}" required>
-            @error('vat')
+            <label class="mt-2 mb-2 label-bg " for="description">*Descrizione</label>
+            <input minlength="11" maxlength="15" type="text" name="description" id="description" class="form-control @error('description') is-invalid @enderror"
+                value="{{ old('description') }}" required>
+            @error('description')
+                <div class="invalid-feedback">
+                    {{ $message }}
+                </div>
+            @enderror
+        </div>
+        <div class="mb-4">
+            <label class="mt-2 mb-2 label-bg " for="visible">*visibilita</label>
+            <input  type="text" name="visible" id="visible" class="form-control @error('visible') is-invalid @enderror"
+                value="{{ old('visible') }}" required>
+            @error('visible')
                 <div class="invalid-feedback">
                     {{ $message }}
                 </div>
             @enderror
         </div>
 
-        {{-- <div class="mb-4 form-group d-flex flex-column">
-            <p id="paragraph" class="mt-2 mb-2 label-bg " style="width: fit-content">*Tipologia del locale</p>
-            <div class="label-bg " style="width: fit-content">
-                @foreach ($types as $type)
-                    <div class="form-check @error('types') is-invalid @enderror">
-                        <input type="checkbox" class="form-check-input" name="types[]" id="type_{{ $type->id }}" value="{{ $type->id }}" @checked(in_array($type->id, old('types', [])))>
-                        <label for="type-{{ $type->id }}">{{ $type->name }}</label>
-                    </div>
-                @endforeach
-                @error('types')
-                    <div class="invalid-feedback">
-                        {{ $message }}
-                    </div>
-                @enderror
-            </div>
-        </div> --}}
-
-        <div class="mb-4">
+        {{-- <div class="mb-4">
             <label class="mt-2 mb-2 label-bg " for="cover_image" class="">*immagine profilo</label>
             <input onchange="previewImage()" name="cover_image" id="cover_image" type="file"
                 class="form-control @error('cover_image') is-invalid @enderror" required>
@@ -81,7 +63,7 @@
             <span class="mt-2 mb-3 text-center label-bg ">Anteprima Immagine:</span>
             <img id="preview">
 
-        </div>
+        </div> --}}
 
         <div class="text-center">
             <button class="btn btn-dark text-center" type="submit">Aggiungi</button>
