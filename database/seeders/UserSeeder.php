@@ -18,11 +18,14 @@ class UserSeeder extends Seeder
     {
         $faker = Faker::create();
 
+        $userAdmin = 0;
+
         foreach (range(1, 10) as $index) {
             DB::table('users')->insert([
                 'name' => $faker->name,
                 'email' => $faker->unique()->safeEmail,
                 'email_verified_at' => now(),
+                'is_admin' => $userAdmin,
                 'password' => Hash::make('password'), // Puoi impostare una password predefinita
                 'created_at' => now(),
                 'updated_at' => now(),
