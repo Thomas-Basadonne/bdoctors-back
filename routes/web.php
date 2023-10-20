@@ -1,7 +1,7 @@
 <?php
 
 use App\Http\Controllers\ProfileController;
-use App\Http\Controllers\DocProfileController;
+use App\Http\Controllers\Admin\DocProfileController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -20,7 +20,7 @@ Route::get('/', function () {
 });
 
 Route::get('/dashboard', function () {
-    return view('dashboard');
+    return view('admin.dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {
@@ -29,9 +29,8 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-Route::middleware(['auth', 'verified'])->prefix('admin')->name('admin.')->group(function () {
-    Route::resource('profile', DocProfileController::class)->parameters(['profile' => 'profile:slug']);
-    // Route::resource('create', ProfilesController::class)->parameters(['profile' => 'profile:slug']);
+Route::middleware(['auth', 'verified'])->name('admin.')->prefix('admin')->group(function () {
+    Route::resource('docprofile', DocProfileController::class);
 });
 
 require __DIR__ . '/auth.php';

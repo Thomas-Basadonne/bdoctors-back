@@ -1,8 +1,9 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
 use App\Models\Profile;
+use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreProfileRequest;
 use App\Http\Requests\UpdateProfileRequest;
 use Illuminate\Support\Facades\Auth;
@@ -14,27 +15,27 @@ class DocProfileController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     *
      */
     public function index()
     {
         $user = Auth::id();
-        return view('admin.indexProfile', compact('user'));
+        return view('admin.docprofile.index', compact('user'));
     }
 
     /**
      * Show the form for creating a new resource.
      *
-     * @return \Illuminate\Http\Response
+     *
      */
     public function create()
     {
         $profiles = Profile::all();
 
         if ($profiles->firstWhere('user_id', Auth::id())) {
-            return redirect()->route('admin.profile.index');
+            return redirect()->route('admin.docprofile.index');
         } else {
-            return view('admin\createProfile', compact('profiles'));
+            return view('admin.docprofile.create', compact('profiles'));
         }
     }
 
@@ -48,46 +49,45 @@ class DocProfileController extends Controller
     {
         // $formData = $request->all();
         // $this->validation($formData);
-        $newProfile = new profile();
+        $newProfile = new Profile();
         $newProfile->fill($request->all());
         $newProfile->user_id = Auth::id();
         // $newProfile->slug = Str::slug($newProfile->address, '-');
         $newProfile->save();
 
-        return redirect()->route('admin.profile.show', $newProfile->id);
+        return redirect()->route('admin.docprofile.show', $newProfile->id);
     }
 
     /**
      * Display the specified resource.
      *
      * @param  \App\Models\Profile  $profiles
-     * @return \Illuminate\Http\Response
+     *
      */
     public function show(Profile $profiles)
     {
         if ($profiles->user_id == Auth::id()) {
-            return view('admin.showProfile', compact('profiles'));
+            return view('admin.docprofile.show', compact('profiles'));
         } else {
-            return redirect()->route('admin.profile.index');
+            return redirect()->route('admin.docprofile.index');
         }
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\profile  $profiles
-     * @return \Illuminate\Http\Response
+     * @param  \App\Models\Profile  $profiles
+     *
      */
-    public function edit(profile $profiles)
-    {
-    }
+    public function edit(Profile $profiles)
+    { }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \App\Http\Requests\UpdateProfileRequest  $request
      * @param  \App\Models\Profile $profiles
-     * @return \Illuminate\Http\Response
+     *
      */
     public function update(UpdateProfileRequest $request, Profile $profiles)
     {
@@ -97,10 +97,10 @@ class DocProfileController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\profiles  $profiles
-     * @return \Illuminate\Http\Response
+     * @param  \App\Models\Profile $profiles
+     *
      */
-    public function destroy(profile $profiles)
+    public function destroy(Profile $profiles)
     {
         //
     }
