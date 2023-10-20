@@ -19,8 +19,8 @@ class DocProfileController extends Controller
      */
     public function index()
     {
-        $user = Auth::id();
-        return view('admin.docprofile.index', compact('user'));
+        $profiles = Profile::all(); // Recupera tutti i profili
+        return view('admin.docprofile.index', compact('profiles'));
     }
 
     /**
@@ -79,8 +79,19 @@ class DocProfileController extends Controller
      * @param  \App\Models\Profile  $profiles
      *
      */
-    public function edit(Profile $profiles)
-    { }
+    public function edit(Profile $profile)
+    {
+        // Verifica se il profilo esiste
+        if (!$profile) {
+            // Se il profilo non esiste, puoi gestire l'errore in base alle tue esigenze
+            // Ad esempio, reindirizza l'utente o mostra un messaggio di errore
+            return redirect()->route('admin.docprofile.index')->with('error', 'Profilo non trovato');
+        }
+    
+        // Passa il profilo alla vista "edit"
+        return view('admin.docprofile.edit', compact('profile'));
+    }
+    
 
     /**
      * Update the specified resource in storage.
@@ -89,10 +100,24 @@ class DocProfileController extends Controller
      * @param  \App\Models\Profile $profiles
      *
      */
-    public function update(UpdateProfileRequest $request, Profile $profiles)
+    public function update(UpdateProfileRequest $request, Profile $profile)
     {
-        //
+        // Validazione dei dati inviati dal modulo
+        $validatedData = $request->validated();
+
+        // Aggiornamento dei campi del profilo
+        $profile->update([
+            'services' => $validatedData['services'],
+            'address' => $validatedData['address'],
+            'description' => $validatedData['description'],
+            'visible' => $validatedData['visible'],
+            // Altri campi del profilo da aggiornare
+        ]);
+
+        // Redirect alla vista "show" con un messaggio di successo
+        return redirect()->route('admin.docprofile.show', $profile->id)->with('success', 'Profilo aggiornato con successo');
     }
+
 
     /**
      * Remove the specified resource from storage.
