@@ -30,7 +30,12 @@ class ProfilesController extends Controller
     public function create()
     {
         $profiles = profiles::all();
-        return view('admin\createProfile', compact('profiles'));
+
+        if ($profiles->firstWhere('user_id', Auth::id())) {
+            return redirect()->route('admin.profile.index');
+        } else {
+            return view('admin\createProfile', compact('profiles'));
+        }
     }
 
     /**
