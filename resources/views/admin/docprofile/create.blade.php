@@ -1,16 +1,19 @@
-@extends('layouts/app')
+@extends('layouts.app')
 
 @section('content')
     <h1 class="m-4 text-center">Il tuo profilo</h1>
     {{-- onsubmit="return validateForm('admin.profile.store')" --}}
 
-    <form action="{{route('admin.profile.store')}}" class="background container form-control border-5 border-warning rounded-5 py-4"  method="POST" enctype="multipart/form-data">
+    <form action="{{ route('admin.docprofile.store') }}"
+        class="background container form-control border-5 border-warning rounded-5 py-4" method="POST"
+        enctype="multipart/form-data">
         @csrf
 
         <div class="mb-4">
             <label class="mt-2 mb-2 label-bg " for="services">*Servizio</label>
             <input type="text" name="services" id="services"
-                class="form-control text-dark @error('services') is-invalid @enderror" value="{{ old('services') }}" required>
+                class="form-control text-dark @error('services') is-invalid @enderror" value="{{ old('services') }}"
+                required>
             @error('services')
                 <div class="invalid-feedback">
                     {{ $message }}
@@ -31,8 +34,8 @@
 
         <div class="mb-4">
             <label class="mt-2 mb-2 label-bg " for="description">*Descrizione</label>
-            <input minlength="11" maxlength="15" type="text" name="description" id="description" class="form-control @error('description') is-invalid @enderror"
-                value="{{ old('description') }}" required>
+            <input minlength="11" maxlength="15" type="text" name="description" id="description"
+                class="form-control @error('description') is-invalid @enderror" value="{{ old('description') }}" required>
             @error('description')
                 <div class="invalid-feedback">
                     {{ $message }}
@@ -41,7 +44,7 @@
         </div>
         <div class="mb-4">
             <label class="mt-2 mb-2 label-bg " for="visible">*visibilita</label>
-            <input  type="text" name="visible" id="visible" class="form-control @error('visible') is-invalid @enderror"
+            <input type="text" name="visible" id="visible" class="form-control @error('visible') is-invalid @enderror"
                 value="{{ old('visible') }}" required>
             @error('visible')
                 <div class="invalid-feedback">
