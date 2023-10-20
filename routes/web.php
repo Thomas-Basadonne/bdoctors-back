@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\DocProfileController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -28,4 +29,9 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-require __DIR__.'/auth.php';
+Route::middleware(['auth', 'verified'])->prefix('admin')->name('admin.')->group(function () {
+    Route::resource('profile', DocProfileController::class)->parameters(['profile' => 'profile:slug']);
+    // Route::resource('create', ProfilesController::class)->parameters(['profile' => 'profile:slug']);
+});
+
+require __DIR__ . '/auth.php';
