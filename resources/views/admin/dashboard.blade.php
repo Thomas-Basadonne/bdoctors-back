@@ -20,8 +20,9 @@
                         {{ __('You are logged in!') }}
                         <br>
 
-                        <a class="dropdown-item"
-                            href="{{ url('admin/docprofile/create') }}">{{ __('crea il tuo profilo da dottore') }}</a>
+                            
+                            <a href="{{url('admin/docprofile/index')}}">{{ __('Vai alla lista dottori') }}</a>
+                        <a href="{{ url('admin/docprofile/create') }}">{{ __('crea il tuo profilo da dottore') }}</a>
 
                     </div>
                 </div>
