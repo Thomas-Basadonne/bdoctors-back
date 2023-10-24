@@ -65,14 +65,14 @@ class DocProfileController extends Controller
      * @param  \App\Models\Profile  $profile
      *
      */
-    public function show(Profile $profile)
+    public function show(Profile $profile, $id)
     {
 
         if (!Auth::user()->is_admin && $profile->user_id !== Auth::id()) {
             abort(403);
         }
-        $profiles = Profile::all()->where('user_id', $profile->id);
-        return view('admin.docprofile.show', compact('profiles'));
+        $profiles = Profile::all();
+        return view('admin.docprofile.show', compact('profiles', 'id'));
     }
 
     /**

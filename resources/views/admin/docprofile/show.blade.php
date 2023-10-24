@@ -1,6 +1,9 @@
 @extends('layouts.app')
 
 @section('content')
+{{-- {{dd($profiles[$id -1]->description)}} --}}
+{{$profile=($profiles[$id -1]->description)}}
+{{dd($profile)}}
 
     <div class="container mt-5">
     
