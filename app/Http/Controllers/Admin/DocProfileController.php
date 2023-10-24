@@ -62,35 +62,33 @@ class DocProfileController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Profile  $profiles
+     * @param  \App\Models\Profile  $profile
      *
      */
-    public function show(Profile $profiles)
+    public function show(Profile $profile)
     {
-        if ($profiles->user_id == Auth::id()) {
-            return view('admin.docprofile.show', compact('profiles'));
-        } else {
-            return redirect()->route('admin.docprofile.index');
+
+        if (!Auth::user()->is_admin && $profile->user_id !== Auth::id()) {
+            abort(403);
         }
+        $profiles = Profile::all()->where('user_id', $profile->id);
+        return view('admin.docprofile.show', compact('profiles'));
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Profile  $profiles
+     * @param  \App\Models\Profile  $profile
      *
      */
     public function edit(Profile $profile)
     {
-        // Verifica se il profilo esiste
-        if (!$profile) {
-            // Se il profilo non esiste, puoi gestire l'errore in base alle tue esigenze
-            // Ad esempio, reindirizza l'utente o mostra un messaggio di errore
-            return redirect()->route('admin.docprofile.index')->with('error', 'Profilo non trovato');
+        if (!Auth::user()->is_admin && $profile->user_id !== Auth::id()) {
+            abort(403);
         }
-
-        // Passa il profilo alla vista "edit"
+        $profiles = Profile::all();
         return view('admin.docprofile.edit', compact('profile'));
+        // Verifica se il profilo esiste
     }
 
 
@@ -98,24 +96,22 @@ class DocProfileController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \App\Http\Requests\UpdateProfileRequest  $request
-     * @param  \App\Models\Profile $profiles
+     * @param  \App\Models\Profile $profile
      *
      */
     public function update(UpdateProfileRequest $request, Profile $profile)
     {
-        // Validazione dei dati inviati dal modulo
-        $validatedData = $request->validated();
 
-        // Aggiornamento dei campi del profilo
-        $profile->update([
-            'services' => $validatedData['services'],
-            'address' => $validatedData['address'],
-            'description' => $validatedData['description'],
-            'visible' => $validatedData['visible'],
-            // Altri campi del profilo da aggiornare
-        ]);
 
-        // Redirect alla vista "show" con un messaggio di successo
+        $formData = $request->validated();
+        $formData['user_id'] = Auth::id();
+        // $this->validation($formData);
+        $profile->update($formData);
+        if ($request->has('profiles')) {
+            $profile->profiles()->sync($request->profile);
+        } else {
+            $profile->profiles()->sync([]);
+        }
         return redirect()->route('admin.docprofile.show', $profile->id)->with('success', 'Profilo aggiornato con successo');
     }
 
