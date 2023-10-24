@@ -2,6 +2,8 @@
 
 namespace App\Http\Requests;
 
+use App\Models\Profile;
+
 use Illuminate\Foundation\Http\FormRequest;
 
 class UpdateProfileRequest extends FormRequest
