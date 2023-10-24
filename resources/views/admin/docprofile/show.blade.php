@@ -1,9 +1,8 @@
 @extends('layouts.app')
 
 @section('content')
-{{-- {{dd($profiles[$id -1]->description)}} --}}
-{{$profile=($profiles[$id -1]->description)}}
-{{dd($profile)}}
+
+{{-- {{dd($userData->user->name)}} --}}
 
     <div class="container mt-5">
     
@@ -22,15 +21,15 @@
                         {{-- specializzazione --}}
                         <span class="bg-secondary p-1 px-4 rounded text-white">Pro</span>
                         {{-- nome --}}
-                        <h5 class="mt-2 mb-0">Alexender Schidmt</h5>
+                        <h5 class="mt-2 mb-0">{{$userData->user->name}}</h5>
 
                         <span>UI/UX Designer</span>
                         
                         <div class="px-4 mt-1">
                             {{-- description --}}
-                            <p class="fonts">Consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. </p>
+                            <p class="fonts">{{$userData->description}}</p>
                             {{-- servizi --}}
-                            <p class="fonts">Consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. </p>
+                            <p class="fonts">{{$userData->servizi}}</p>
                         
                         </div>
                         

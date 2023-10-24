@@ -6,6 +6,7 @@ use App\Models\Profile;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreProfileRequest;
 use App\Http\Requests\UpdateProfileRequest;
+use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Str;
@@ -67,12 +68,11 @@ class DocProfileController extends Controller
      */
     public function show(Profile $profile, $id)
     {
-
         if (!Auth::user()->is_admin && $profile->user_id !== Auth::id()) {
             abort(403);
         }
-        $profiles = Profile::all();
-        return view('admin.docprofile.show', compact('profiles', 'id'));
+        $userData = Profile::with('user')->where('id', $id)->first();
+        return view('admin.docprofile.show', compact('userData'));
     }
 
     /**
