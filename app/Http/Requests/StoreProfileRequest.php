@@ -26,7 +26,7 @@ class StoreProfileRequest extends FormRequest
     {
         return [
 
-            'user_id' => 'required|max:200',
+            /* 'user_id' => 'required|max:200', */
             'description' => 'required|max:200',
             'services' => 'required|max:200',
             'address' => 'required',

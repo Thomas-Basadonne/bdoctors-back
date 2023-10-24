@@ -47,14 +47,15 @@ class DocProfileController extends Controller
      */
     public function store(StoreProfileRequest $request)
     {
-        // $formData = $request->all();
-        // $this->validation($formData);
-        $newProfile = new Profile();
-        $newProfile->fill($request->all());
-        $newProfile->user_id = Auth::id();
-        // $newProfile->slug = Str::slug($newProfile->address, '-');
-        $newProfile->save();
 
+
+        $formData = $request->validated();
+        $formData['user_id'] = Auth::id();
+        // $this->validation($formData);
+        $newProfile = Profile::create($formData);
+        if ($request->has('profiles')) {
+            $newProfile->profiles()->attach($request->profiles);
+        }
         return redirect()->route('admin.docprofile.show', $newProfile->id);
     }
 
@@ -87,11 +88,11 @@ class DocProfileController extends Controller
             // Ad esempio, reindirizza l'utente o mostra un messaggio di errore
             return redirect()->route('admin.docprofile.index')->with('error', 'Profilo non trovato');
         }
-    
+
         // Passa il profilo alla vista "edit"
         return view('admin.docprofile.edit', compact('profile'));
     }
-    
+
 
     /**
      * Update the specified resource in storage.
