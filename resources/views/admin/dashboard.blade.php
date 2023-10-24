@@ -21,7 +21,7 @@
                         <br>
 
                             
-                            <a href="{{url('admin/docprofile/index')}}">{{ __('Vai alla lista dottori') }}</a>
+                            <a href="{{url('admin/docprofile')}}">{{ __('Vai alla lista dottori') }}</a>
                         <a href="{{ url('admin/docprofile/create') }}">{{ __('crea il tuo profilo da dottore') }}</a>
 
                     </div>
