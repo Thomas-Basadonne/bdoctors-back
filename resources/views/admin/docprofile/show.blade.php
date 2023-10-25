@@ -14,23 +14,25 @@
                     
                     <div class="text-center">
                         {{-- photo --}}
+                        {{-- <img src="{{$userData->photo}}" alt=""> --}}
                         <img src="https://carnivaltoys.it/8268-large_default/set-dottore--cuffia--mascherina--stetoscopio-riflettore--in-busta-c-cav-.jpg" width="100" class="rounded-circle">
                     </div>
                     
                     <div class="text-center mt-3">
-                        {{-- specializzazione --}}
-                        <span class="bg-secondary p-1 px-4 rounded text-white">Pro</span>
                         {{-- nome --}}
                         <h5 class="mt-2 mb-0">{{$userData->user->name}}</h5>
 
+                        {{-- specializzazione --}}
                         <span>UI/UX Designer</span>
                         
                         <div class="px-4 mt-1">
                             {{-- description --}}
                             <p class="fonts">{{$userData->description}}</p>
                             {{-- servizi --}}
-                            <p class="fonts">{{$userData->servizi}}</p>
-                        
+                            <p class="fonts">{{$userData->services}}</p>
+                            {{-- indirizzo --}}
+                            <p class="badge bg-secondary">{{$userData->address}}</p>
+
                         </div>
                         
                         {{-- nav --}}
