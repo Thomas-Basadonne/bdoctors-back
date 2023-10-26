@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
 use App\Models\Sponsorship;
 use App\Http\Requests\StoreSponsorshipRequest;
