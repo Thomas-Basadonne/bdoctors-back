@@ -10,8 +10,7 @@ class DoctorController extends Controller
 {
     public function index(Request $request)
     {
-        $query = Profile::with(['description', 'services']);
-        
+        $query = Profile::with(['user']);
         $doctors = $query->get();
         return response()->json([
             'success' => true,
