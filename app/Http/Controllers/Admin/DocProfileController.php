@@ -48,8 +48,6 @@ class DocProfileController extends Controller
      */
     public function store(StoreProfileRequest $request)
     {
-
-
         $formData = $request->validated();
         $formData['user_id'] = Auth::id();
         // $this->validation($formData);
@@ -68,10 +66,10 @@ class DocProfileController extends Controller
      */
     public function show(Profile $profile, $id)
     {
-        if (!Auth::user()->is_admin && $profile->user_id !== Auth::id()) {
+        $userData = Profile::with('user')->where('id', $id)->first();
+        if (!Auth::user()->is_admin && $userData->user_id !== Auth::id()) {
             abort(403);
         }
-        $userData = Profile::with('user')->where('id', $id)->first();
         return view('admin.docprofile.show', compact('userData'));
     }
 
@@ -83,12 +81,11 @@ class DocProfileController extends Controller
      */
     public function edit(Profile $profile, $id)
     {
-        if (!Auth::user()->is_admin && $profile->user_id !== Auth::id()) {
+        $profiles = Profile::with('user')->where('id', $id)->first();
+        if (!Auth::user()->is_admin && $profiles->user_id !== Auth::id()) {
             abort(403);
         }
-        $profiles = Profile::with('user')->where('id', $id)->first();
         return view('admin.docprofile.edit', compact('profiles'));
-        // Verifica se il profilo esiste
     }
 
 
@@ -105,7 +102,6 @@ class DocProfileController extends Controller
         $formData = Profile::find($id);
         $formData->update($request->all());
         // $this->validation($formData);
-
         return redirect()->route('admin.docprofile.index', $profile)->with('success', 'Profilo aggiornato con successo');
     }
 
@@ -116,10 +112,14 @@ class DocProfileController extends Controller
      * @param  \App\Models\Profile $profiles
      *
      */
-    public function destroy(Profile $profiles)
+    public function destroy(Profile $profiles, $id)
     {
-        $profiles->delete();
-        return redirect()->route('admin.profile.index');
+        $destroyProfile = Profile::find($id);
+        if (!Auth::user()->is_admin && $profiles->user_id !== Auth::id()) {
+            abort(403);
+        }
+        $destroyProfile->delete();
+        return redirect()->route('admin.docprofile.index');
     }
 
     // private function validation($formData)

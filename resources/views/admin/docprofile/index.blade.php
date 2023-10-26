@@ -42,9 +42,13 @@
                                 <a class="btn btn-info" href="{{ route('admin.docprofile.edit', $profile->id) }}">
                                     edit
                                 </a>
-                                <a class="btn btn-danger" href="{{ route('admin.docprofile.destroy', $profile->id) }}">
-                                    delete
-                                </a>
+                                <div class="col-sm">
+                                    <form action="{{ route('admin.docprofile.destroy', $profile->id) }}" method="post">
+                                      @csrf
+                                      @method('DELETE')
+                                      <button type="submit" class="btn btn-danger btn-sm">Delete</button>
+                                    </form>
+                                </div>
                                 
                             </td>
                         </tr>
