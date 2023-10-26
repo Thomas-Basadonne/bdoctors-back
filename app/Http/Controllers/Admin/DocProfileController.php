@@ -81,13 +81,13 @@ class DocProfileController extends Controller
      * @param  \App\Models\Profile  $profile
      *
      */
-    public function edit(Profile $profile)
+    public function edit(Profile $profile, $id)
     {
         if (!Auth::user()->is_admin && $profile->user_id !== Auth::id()) {
             abort(403);
         }
-        $profiles = Profile::all();
-        return view('admin.docprofile.edit', compact('profile'));
+        $profiles = Profile::with('user')->where('id', $id)->first();
+        return view('admin.docprofile.edit', compact('profiles'));
         // Verifica se il profilo esiste
     }
 
@@ -99,20 +99,14 @@ class DocProfileController extends Controller
      * @param  \App\Models\Profile $profile
      *
      */
-    public function update(UpdateProfileRequest $request, Profile $profile)
+    public function update(UpdateProfileRequest $request, Profile $profile, $id)
     {
 
-
-        $formData = $request->validated();
-        $formData['user_id'] = Auth::id();
+        $formData = Profile::find($id);
+        $formData->update($request->all());
         // $this->validation($formData);
-        $profile->update($formData);
-        if ($request->has('profiles')) {
-            $profile->profiles()->sync($request->profile);
-        } else {
-            $profile->profiles()->sync([]);
-        }
-        return redirect()->route('admin.docprofile.show', $profile->id)->with('success', 'Profilo aggiornato con successo');
+
+        return redirect()->route('admin.docprofile.index', $profile)->with('success', 'Profilo aggiornato con successo');
     }
 
 
@@ -124,7 +118,8 @@ class DocProfileController extends Controller
      */
     public function destroy(Profile $profiles)
     {
-        //
+        $profiles->delete();
+        return redirect()->route('admin.profile.index');
     }
 
     // private function validation($formData)
