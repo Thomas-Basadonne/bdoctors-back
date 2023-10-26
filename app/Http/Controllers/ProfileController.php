@@ -16,10 +16,12 @@ class ProfileController extends Controller
     /**
      * Display the user's profile.
      */
-    public function show(Request $request, Profile $profile): View
+    public function show(Request $request, Profile $profiles): View
     {
-        $userData = User::with('profile')->where('id', $request->id)->first();
-        return view('profile.show', ['user' => $request->user(),]);
+        $user = $request->user();
+        $id = Auth::id();
+        $userData = Profile::with('user')->where('user_id', $id)->first();
+        return view('profile.show', ['user' => $user], compact('userData'));
     }
     /**
      * Display the user's profile form.
