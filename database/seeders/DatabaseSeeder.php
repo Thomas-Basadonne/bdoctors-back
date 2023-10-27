@@ -21,7 +21,9 @@ class DatabaseSeeder extends Seeder
             ReviewSeeder::class,
             SponsorshipSeeder::class,
             StarSeeder::class,
-            TypologySeeder::class
+            TypologySeeder::class,
+            UserSponsorshipSeeder::class,
+            UserTypologySeeder::class,
         ]);
     }
 }
