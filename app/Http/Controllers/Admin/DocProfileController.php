@@ -6,6 +6,7 @@ use App\Models\Profile;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreProfileRequest;
 use App\Http\Requests\UpdateProfileRequest;
+use App\Models\Sponsorship;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
@@ -66,11 +67,13 @@ class DocProfileController extends Controller
      */
     public function show(Profile $profile, $id)
     {
+        $idUser = Auth::user();
         $userData = Profile::with('user')->where('id', $id)->first();
+        $sponsorshipData = Sponsorship::where('id', $idUser->id)->first();
         if (!Auth::user()->is_admin && $userData->user_id !== Auth::id()) {
             abort(403);
         }
-        return view('admin.docprofile.show', compact('userData'));
+        return view('admin.docprofile.show', compact('userData', 'sponsorshipData'));
     }
 
     /**

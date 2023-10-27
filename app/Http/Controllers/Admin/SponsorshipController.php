@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Http\Controllers\Controller;
 use App\Models\Sponsorship;
 use App\Http\Requests\StoreSponsorshipRequest;
 use App\Http\Requests\UpdateSponsorshipRequest;
@@ -81,6 +82,6 @@ class SponsorshipController extends Controller
      */
     public function destroy(Sponsorship $sponsorships)
     {
-        //
+        //creare funzione timer sponsor autodistruzuione
     }
 }

@@ -3,6 +3,7 @@
 @section('content')
 
 {{-- {{dd($userData->user->name)}} --}}
+{{-- {{dd($sponsorshipData->name)}} --}}
 
     <div class="container mt-5">
     
@@ -30,6 +31,8 @@
                             <p class="fonts">{{$userData->description}}</p>
                             {{-- servizi --}}
                             <p class="fonts">{{$userData->services}}</p>
+                            {{-- sponsorizzazione  --}}
+                            <p class="fonts">{{$sponsorshipData->name}}</p>
                             {{-- indirizzo --}}
                             <p class="badge bg-secondary">{{$userData->address}}</p>
 
