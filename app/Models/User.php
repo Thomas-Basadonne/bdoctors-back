@@ -68,4 +68,8 @@ class User extends Authenticatable
     {
         return $this->belongsToMany(Typology::class, 'user_typology')->withPivot('user_id', 'typologies_id');
     }
+    public function star()
+    {
+        return $this->hasMany(Star::class);
+    }
 }

@@ -8,4 +8,10 @@ use Illuminate\Database\Eloquent\Model;
 class Star extends Model
 {
     use HasFactory;
+    protected $fillable = ['vote'];
+    public function user()
+
+    {
+        return $this->belongsTo(User::class);
+    }
 }
