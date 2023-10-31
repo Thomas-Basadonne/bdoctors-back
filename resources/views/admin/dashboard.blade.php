@@ -11,6 +11,8 @@
                     <div class="card-header">{{ __('User Dashboard') }}</div>
 
                     <div class="card-body">
+
+                        <a href="{{ url('plans') }}">{{ __('PLANS') }}</a>
                         @if (session('status'))
                             <div class="alert alert-success" role="alert">
                                 {{ session('status') }}
@@ -20,8 +22,7 @@
                         @if (auth()->user()->is_admin)
                             <a href="{{ url('admin/docprofile') }}">{{ __('Vai alla lista dottori') }}</a>
                             <a href="{{ url('admin/docprofile/create') }}">{{ __('crea il tuo profilo da dottore') }}</a>
-                            @else
-                            
+                        @else
                             <a href="{{ url('profile/show') }}">{{ __('vai al tuo profilo da dottore') }}</a>
                             <a href="{{ url('admin/docprofile/create') }}">{{ __('crea il tuo profilo da dottore') }}</a>
                         @endif
