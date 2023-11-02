@@ -12,6 +12,6 @@ class Typology extends Model
     public function user()
     {
 
-        return $this->belongsToMany(User::class);
+        return $this->belongsToMany(User::class, 'user_typology')->withPivot('user_id', 'typology_id');
     }
 }
