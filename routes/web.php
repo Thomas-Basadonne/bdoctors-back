@@ -33,8 +33,6 @@ Route::middleware('auth')->group(function () {
 
 Route::middleware(['auth', 'verified'])->name('admin.')->prefix('admin')->group(function () {
     Route::resource('docprofile', DocProfileController::class);
-    Route::resource("typology", TypologyController::class);
-
 });
 
 require __DIR__ . '/auth.php';

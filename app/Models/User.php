@@ -60,7 +60,8 @@ class User extends Authenticatable
     {
         return $this->belongsToMany(Sponsorship::class, 'user_sponsorship')->withPivot('user_id', 'sponsorships_id');
     }
-    public function typologies(){
-        return $this->belongsToMany(Typology::class, 'user_typology')->withPivot('user_id', 'typologies_id');
+    public function typologies()
+    {
+        return $this->belongsToMany(Typology::class, 'user_typology')->withPivot('user_id', 'typology_id');
     }
 }
