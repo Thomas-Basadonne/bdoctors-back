@@ -71,6 +71,5 @@ class Kernel extends HttpKernel
     protected function schedule(Schedule $schedule)
     {
         // Esegui il job RemoveExpiredSponsorshipRelationshipsJob ogni ora, ad esempio
-        $schedule->job(new RemoveExpiredSponsorshipRelationshipsJob())->everySeconds(5);
-    }
+        /* $schedule->job(new RemoveExpiredSponsorshipRelationshipsJob())->everySeconds(5); */ }
 }
