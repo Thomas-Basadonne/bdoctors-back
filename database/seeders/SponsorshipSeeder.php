@@ -49,13 +49,14 @@ class SponsorshipSeeder extends Seeder
         $usersIDs = DB::table('users')->pluck('id');
         $sponsorIDs = DB::table('sponsorships')->pluck('id');
 
-        foreach (range(1, 50) as $index) {
-            DB::table('user_sponsorship')->insert([
-                'user_id' => $faker->randomElement($usersIDs),
-                'sponsorship_id' => rand(1, 3),
-                'created_at' => now(),
-                'updated_at' => now(),
-            ]);
-        }
+        // STA ROBA DA ERRORE
+        // foreach (range(1, 50) as $index) {
+        //     DB::table('user_sponsorship')->insert([
+        //         'user_id' => $faker->randomElement($usersIDs),
+        //         'sponsorship_id' => rand(1, 3),
+        //         'created_at' => now(),
+        //         'updated_at' => now(),
+        //     ]);
+        // }
     }
 }

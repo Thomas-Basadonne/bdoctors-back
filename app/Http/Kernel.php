@@ -2,7 +2,9 @@
 
 namespace App\Http;
 
+use App\Jobs\RemoveExpiredSponsorshipRelationshipsJob;
 use Illuminate\Foundation\Http\Kernel as HttpKernel;
+use Illuminate\Console\Scheduling\Schedule;
 
 class Kernel extends HttpKernel
 {
@@ -64,4 +66,11 @@ class Kernel extends HttpKernel
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
         'verified' => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
     ];
+
+
+    protected function schedule(Schedule $schedule)
+    {
+        // Esegui il job RemoveExpiredSponsorshipRelationshipsJob ogni ora, ad esempio
+        $schedule->job(new RemoveExpiredSponsorshipRelationshipsJob())->everySeconds(5);
+    }
 }

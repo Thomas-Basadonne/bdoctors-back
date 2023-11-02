@@ -6,6 +6,7 @@ use App\Models\Profile;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreProfileRequest;
 use App\Http\Requests\UpdateProfileRequest;
+use App\Models\Typology;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
@@ -32,11 +33,12 @@ class DocProfileController extends Controller
     public function create()
     {
         $profiles = Profile::all();
+        $typelogys = Typology::all();
 
         if ($profiles->firstWhere('user_id', Auth::id())) {
             return redirect()->route('admin.docprofile.index');
         } else {
-            return view('admin.docprofile.create', compact('profiles'));
+            return view('admin.docprofile.create', compact('profiles', 'typelogys'));
         }
     }
 
@@ -55,6 +57,9 @@ class DocProfileController extends Controller
         if ($request->has('profiles')) {
             $newProfile->profiles()->attach($request->profiles);
         }
+        // if (array_key_exists('typology', $formData)) {
+        // $newProfile->typelogys()->attach($formData['typelogys']);
+        // }
         return redirect()->route('admin.docprofile.show', $newProfile->id);
     }
 

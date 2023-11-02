@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\ProfileUpdateRequest;
+use App\Models\Profile;
+use App\Models\User;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -11,6 +13,16 @@ use Illuminate\View\View;
 
 class ProfileController extends Controller
 {
+    /**
+     * Display the user's profile.
+     */
+    public function show(Request $request, Profile $profiles): View
+    {
+        $user = $request->user();
+        $id = Auth::id();
+        $userData = Profile::with('user')->where('user_id', $id)->first();
+        return view('profile.show', ['user' => $user], compact('userData'));
+    }
     /**
      * Display the user's profile form.
      */

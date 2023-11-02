@@ -53,6 +53,15 @@
             @enderror
         </div>
 
+        <div>
+            @foreach ($typelogys as $typelogy)
+            <div class="form-check form-switch">
+                <input class="form-check-input" value="{{$typelogy->id}}"  type="checkbox" role="switch" id="flexSwitchCheckDefault" @checked(in_array($typelogy->id,old('typelogys',[])))>
+                <label class="form-check-label" for="flexSwitchCheckDefault">{{$typelogy->name}}</label>
+              </div>
+            @endforeach
+        </div>
+
         {{-- <div class="mb-4">
             <label class="mt-2 mb-2 label-bg " for="cover_image" class="">*immagine profilo</label>
             <input onchange="previewImage()" name="cover_image" id="cover_image" type="file"

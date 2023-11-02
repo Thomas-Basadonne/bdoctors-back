@@ -17,13 +17,16 @@
                             </div>
                         @endif
 
-                        {{ __('You are logged in!') }}
-                        <br>
+                        @if (auth()->user()->is_admin)
+                            <a href="{{ url('admin/docprofile') }}">{{ __('Vai alla lista dottori') }}</a>
+                            <a href="{{ url('admin/docprofile/create') }}">{{ __('crea il tuo profilo da dottore') }}</a>
+                            <a href="{{ url('admin/typology') }}">{{ __('TYPOLOGY') }}</a>
 
+                            @else
                             
-                            <a href="{{url('admin/docprofile')}}">{{ __('Vai alla lista dottori') }}</a>
-                        <a href="{{ url('admin/docprofile/create') }}">{{ __('crea il tuo profilo da dottore') }}</a>
-
+                            <a href="{{ url('profile/show') }}">{{ __('vai al tuo profilo da dottore') }}</a>
+                            <a href="{{ url('admin/docprofile/create') }}">{{ __('crea il tuo profilo da dottore') }}</a>
+                        @endif
                     </div>
                 </div>
             </div>
