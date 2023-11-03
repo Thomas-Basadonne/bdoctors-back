@@ -54,10 +54,10 @@
         </div>
 
         <div>
-            @foreach ($typelogys as $typelogy)
+            @foreach ($typologies as $typology)
             <div class="form-check form-switch">
-                <input class="form-check-input" value="{{$typelogy->id}}"  type="checkbox" role="switch" id="flexSwitchCheckDefault" @checked(in_array($typelogy->id,old('typelogys',[])))>
-                <label class="form-check-label" for="flexSwitchCheckDefault">{{$typelogy->name}}</label>
+                <input class="form-check-input" name="typologies[]" value="{{$typology->id}}"  type="checkbox" role="switch" id="flexSwitchCheckDefault" @checked(in_array($typology->id,old('typologies',[])))>
+                <label class="form-check-label" for="typology-{{$typology->id}}">{{$typology->name}}</label>
               </div>
             @endforeach
         </div>

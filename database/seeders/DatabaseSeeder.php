@@ -20,10 +20,10 @@ class DatabaseSeeder extends Seeder
             MessageSeeder::class,
             ReviewSeeder::class,
             SponsorshipSeeder::class,
-            StarSeeder::class,
             TypologySeeder::class,
             UserSponsorshipSeeder::class,
             UserTypologySeeder::class,
+            PlanSeeder::class,
         ]);
     }
 }

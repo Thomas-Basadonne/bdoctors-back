@@ -19,6 +19,7 @@ return new class extends Migration
             $table->text('lastname')->nullable();
             $table->string('email')->nullable();
             $table->text('text')->nullable();
+            $table->tinyInteger('rating');
             $table->timestamps();
         });
     }
