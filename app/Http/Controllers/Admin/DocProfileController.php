@@ -51,8 +51,9 @@ class DocProfileController extends Controller
     public function store(StoreProfileRequest $request)
     {
         $formData = $request->all();
-        // $formData = $request->validated();
         $formData['user_id'] = Auth::id();
+        $user = User::find($formData['user_id']);
+        // $formData = $request->validated();
         // $this->validation($formData);
         $newProfile = Profile::create($formData);
         // $newProfile->fill($formData);
@@ -60,11 +61,8 @@ class DocProfileController extends Controller
             $newProfile->profiles()->attach($request->profiles);
         }
         // if (array_key_exists('typology', $formData)) {
-
-        // $newProfile->typologies()->attach($request->typologies);
-
+        $user->typologies()->attach($formData['typologies']);
         // }
-        // dd($formData);
         $newProfile->save();
         return redirect()->route('admin.docprofile.show', $newProfile->id);
     }

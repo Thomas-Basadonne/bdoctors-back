@@ -9,9 +9,13 @@ class Typology extends Model
 {
     use HasFactory;
     protected $fillable = ['name'];
-    public function user()
-    {
+    // public function user()
+    // {
 
-        return $this->belongsToMany(User::class, 'user_typology')->withPivot('user_id', 'typology_id');
+    //     return $this->belongsToMany(User::class, 'user_typology')->withPivot('user_id', 'typology_id');
+    // }
+    public function profiles()
+    {
+        return $this->belongsToMany(Profile::class);
     }
 }
