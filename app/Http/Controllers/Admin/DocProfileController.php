@@ -76,11 +76,13 @@ class DocProfileController extends Controller
     public function show(Profile $profile, $id)
     {
         $userData = Profile::with('user')->where('id', $id)->first();
-        $userTypology = Profile::with('typology');
+        // $userTypology = Profile::with('typology');
+        $userTypology = User::with('typologies')->where('id', $id)->first();
+        $docTypologies = $userTypology->typologies;
         if (!Auth::user()->is_admin && $userData->user_id !== Auth::id()) {
             abort(403);
         }
-        return view('admin.docprofile.show', compact('userData', 'userTypology'));
+        return view('admin.docprofile.show', compact('userData', 'docTypologies'));
     }
 
     /**

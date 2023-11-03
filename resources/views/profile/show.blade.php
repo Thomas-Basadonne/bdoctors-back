@@ -26,9 +26,8 @@
 
                         <div>
                             @foreach ($docTypologies as $docTypology)
-                                <span>{{ $docTypology->name }}</span>
+                                <span>{{ $docTypology->name }}</span> <br>
                             @endforeach
-
                         </div>
 
                         <span class="badge bg-primary">stelle</span>

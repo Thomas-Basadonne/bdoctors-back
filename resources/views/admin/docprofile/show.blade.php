@@ -3,6 +3,7 @@
 @section('content')
 
 {{-- {{dd($userData->user->name)}} --}}
+{{-- {{dd($docTypologies)}} --}}
 
     <div class="container mt-5">
     
@@ -23,7 +24,11 @@
                         <h5 class="mt-2 mb-0">{{$userData->user->name}}</h5>
 
                         {{-- specializzazione --}}
-                        <span>UI/UX Designer</span>
+                        <div>
+                            @foreach ($docTypologies as $docTypology)
+                                <span>{{ $docTypology->name }}</span> <br>
+                            @endforeach
+                        </div>
                         
                         <div class="px-4 mt-1">
                             {{-- description --}}
