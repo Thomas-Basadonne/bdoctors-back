@@ -33,12 +33,12 @@ class DocProfileController extends Controller
     public function create()
     {
         $profiles = Profile::all();
-        $typelogys = Typology::all();
+        $typologies = Typology::all();
 
         if ($profiles->firstWhere('user_id', Auth::id())) {
             return redirect()->route('admin.docprofile.index');
         } else {
-            return view('admin.docprofile.create', compact('profiles', 'typelogys'));
+            return view('admin.docprofile.create', compact('profiles', 'typologies'));
         }
     }
 
@@ -50,16 +50,22 @@ class DocProfileController extends Controller
      */
     public function store(StoreProfileRequest $request)
     {
-        $formData = $request->validated();
+        $formData = $request->all();
+        // $formData = $request->validated();
         $formData['user_id'] = Auth::id();
         // $this->validation($formData);
         $newProfile = Profile::create($formData);
+        // $newProfile->fill($formData);
         if ($request->has('profiles')) {
             $newProfile->profiles()->attach($request->profiles);
         }
         // if (array_key_exists('typology', $formData)) {
-        // $newProfile->typelogys()->attach($formData['typelogys']);
+
+        // $newProfile->typologies()->attach($request->typologies);
+
         // }
+        // dd($formData);
+        $newProfile->save();
         return redirect()->route('admin.docprofile.show', $newProfile->id);
     }
 
@@ -72,7 +78,7 @@ class DocProfileController extends Controller
     public function show(Profile $profile, $id)
     {
         $userData = Profile::with('user')->where('id', $id)->first();
-        /* $userTypology = Profile::with('typology'); */
+        $userTypology = Profile::with('typology');
         if (!Auth::user()->is_admin && $userData->user_id !== Auth::id()) {
             abort(403);
         }
